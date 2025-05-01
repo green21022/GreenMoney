@@ -1,102 +1,212 @@
-# GreenMoney
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Earnify - Task-Based Earning Platform</title>
+  <title>GreenMoney</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: Arial, sans-serif;
-      line-height: 1.6;
-      background: #f8f9fa;
-      color: #333;
+      background: #f0fff4;
+      color: #2d3748;
     }
-    header {
-      background: #6f42c1;
-      color: #fff;
-      padding: 1rem;
+    .menu-toggle {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      background: #38a169;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      font-size: 20px;
+      cursor: pointer;
+      z-index: 1001;
+      border-radius: 4px;
+    }
+    .sidebar {
+      width: 220px;
+      background: #38a169;
+      color: white;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      padding: 20px;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+      z-index: 1000;
+    }
+    .sidebar.active {
+      transform: translateX(0);
+    }
+    .sidebar h2 {
       text-align: center;
+      margin-bottom: 20px;
     }
-    nav a {
-      color: #fff;
-      margin: 0 10px;
+    .sidebar a {
+      display: block;
+      color: white;
       text-decoration: none;
+      margin: 10px 0;
+      padding: 8px;
+      border-radius: 4px;
     }
-    #hero {
-      padding: 2rem;
-      background: #e9ecef;
+    .sidebar a:hover {
+      background: #2f855a;
+    }
+    .main-content {
+      margin-left: 0;
+      padding: 20px;
+    }
+    header, footer {
+      background: #38a169;
+      color: #fff;
       text-align: center;
+      padding: 1rem;
+      border-radius: 6px;
+      margin-bottom: 20px;
     }
     .btn {
       display: inline-block;
       margin-top: 1rem;
       padding: 0.5rem 1rem;
-      background: #6f42c1;
+      background: #2f855a;
       color: white;
       text-decoration: none;
       border-radius: 5px;
     }
     section {
-      padding: 2rem;
+      padding: 1rem 0;
     }
-    footer {
-      text-align: center;
+    .task-option, .reward-option {
       padding: 1rem;
-      background: #6f42c1;
-      color: white;
-    }
-    ul {
-      list-style-type: disc;
-      padding-left: 20px;
-    }
-    form {
-      max-width: 400px;
-      margin: 0 auto;
-      background: #fff;
-      padding: 1rem;
-      border-radius: 5px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    form input[type="text"],
-    form input[type="email"],
-    form input[type="password"] {
-      width: 100%;
-      padding: 0.5rem;
-      margin: 0.5rem 0;
+      background: #ffffff;
       border: 1px solid #ccc;
       border-radius: 5px;
+      margin: 1rem 0;
     }
-    form input[type="submit"] {
-      background: #6f42c1;
+    form {
+      background: #ffffff;
+      padding: 1rem;
+      max-width: 400px;
+      margin: 1rem 0;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    form input {
+      width: 100%;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+    form button {
+      padding: 0.5rem 1rem;
+      background: #38a169;
       color: white;
       border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
+      border-radius: 3px;
       cursor: pointer;
     }
-    @media (max-width: 600px) {
-      nav a {
-        display: block;
-        margin: 10px 0;
-      }
-      section {
-        padding: 1rem;
-      }
+    #payeer-input { display: none; }
+    #tasks, #rewards, #login, #signup { display: none; }
+    .active-section { display: block !important; }
+    @media (min-width: 768px) {
+      .sidebar { transform: translateX(0); }
+      .menu-toggle { display: none; }
+      .main-content { margin-left: 220px; }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Earnify</h1>
-    <nav>
-      <a href="#tasks">Tasks</a>
-      <a href="#rewards">Rewards</a>
-      <a href="#login">Login</a>
-      <a href="#signup">Sign Up</a>
-    </nav>
-  </
+  <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+  <div class="sidebar" id="sidebar">
+    <h2>GreenMoney</h2>
+    <a href="#hero" onclick="showSection('hero')">Home</a>
+    <a href="#tasks" onclick="showSection('tasks')">Tasks</a>
+    <a href="#rewards" onclick="showSection('rewards')">Rewards</a>
+    <a href="#login" onclick="showSection('login')">Login</a>
+    <a href="#signup" onclick="showSection('signup')">Signup</a>
+  </div>
+  <div class="main-content">
+    <header>
+      <h1>Welcome to GreenMoney</h1>
+    </header>
+    <section id="hero" class="active-section">
+      <h2>Turn Time Into Cash</h2>
+      <p>Earn real money by completing simple online tasks.</p>
+      <a href="#signup" class="btn" onclick="showSection('signup')">Start Earning</a>
+    </section>
+    <section id="tasks">
+      <h3>Offerwalls</h3>
+      <div class="task-option">
+        <h4>OfferToro</h4>
+        <iframe src="https://www.offertoro.com/ifr/show/YOUR_APP_ID_HERE" width="100%" height="600" frameborder="0"></iframe>
+      </div>
+      <div class="task-option">
+        <h4>AdGem (PubScale)</h4>
+        <iframe src="https://wall.adgem.com/v1/wall?appid=YOUR_APP_ID&playerid=USER123" width="100%" height="600" frameborder="0"></iframe>
+      </div>
+      <div class="task-option">
+        <h4>UpWall</h4>
+        <iframe src="https://offerwall.upwall.io/offerwall?appid=YOUR_APP_ID&userid=USER123" width="100%" height="600" frameborder="0"></iframe>
+      </div>
+      <div class="task-option">
+        <h4>Fyber</h4>
+        <iframe src="https://www.fyber.com/offerwall/YOUR_OFFERWALL_ID" width="100%" height="600" frameborder="0"></iframe>
+      </div>
+    </section>
+    <section id="rewards">
+      <h3>Redeem Your Points</h3>
+      <div class="reward-option"><h4>bKash</h4><p>Redeem via bKash.</p></div>
+      <div class="reward-option"><h4>PayPal</h4><p>Redeem via PayPal.</p></div>
+      <div class="reward-option" onclick="showPayeerInput()"><h4>Payeer</h4><p>Redeem via Payeer</p></div>
+      <div class="reward-option" id="payeer-input">
+        <h4>Enter Payeer ID</h4>
+        <input type="text" id="payeer-id" placeholder="Enter Payeer ID" />
+        <button onclick="submitPayeer()">Submit</button>
+      </div>
+    </section>
+    <section id="login">
+      <h3>Login</h3>
+      <form>
+        <input type="email" placeholder="Email" required />
+        <input type="password" placeholder="Password" required />
+        <button type="submit">Login</button>
+      </form>
+    </section>
+    <section id="signup">
+      <h3>Signup</h3>
+      <form>
+        <input type="text" placeholder="Full Name" required />
+        <input type="email" placeholder="Email" required />
+        <input type="password" placeholder="Password" required />
+        <button type="submit">Signup</button>
+      </form>
+    </section>
+    <footer>
+      <p>&copy; 2025 GreenMoney. All rights reserved.</p>
+    </footer>
+  </div>
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.getElementById("sidebar");
+      sidebar.classList.toggle("active");
+    }
+    function showPayeerInput() {
+      document.getElementById("payeer-input").style.display = "block";
+    }
+    function submitPayeer() {
+      const id = document.getElementById("payeer-id").value;
+      if (id) alert("Payeer ID submitted: " + id);
+      else alert("Please enter your Payeer ID.");
+    }
+    function showSection(id) {
+      const sections = document.querySelectorAll("section");
+      sections.forEach(section => section.classList.remove("active-section"));
+      document.getElementById(id).classList.add("active-section");
+    }
+  </script>
+</body>
+</html>
