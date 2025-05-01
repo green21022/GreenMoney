@@ -201,23 +201,24 @@
         <button onclick="submitPayeer()">Submit</button>
       </div>
     </section>
-    <section id="login">
-      <h3>Login</h3>
-      <form>
-        <input type="email" placeholder="Email" required />
-        <input type="password" placeholder="Password" required />
-        <button type="submit">Login</button>
-      </form>
-    </section>
     <section id="signup">
-      <h3>Signup</h3>
-      <form>
-        <input type="text" placeholder="Full Name" required />
-        <input type="email" placeholder="Email" required />
-        <input type="password" placeholder="Password" required />
-        <button type="submit">Signup</button>
-      </form>
-    </section>
+  <h3>Signup</h3>
+  <form onsubmit="handleSignup(event)">
+    <input type="text" id="signup-name" placeholder="Full Name" required />
+    <input type="email" id="signup-email" placeholder="Email" required />
+    <input type="password" id="signup-password" placeholder="Password" required />
+    <button type="submit">Create Account</button>
+  </form>
+</section>
+
+<section id="login">
+  <h3>Login</h3>
+  <form onsubmit="handleLogin(event)">
+    <input type="email" id="login-email" placeholder="Email" required />
+    <input type="password" id="login-password" placeholder="Password" required />
+    <button type="submit">Login</button>
+  </form>
+</section>
   </div>
 
   <footer class="sticky-footer" id="footer">
